@@ -28,7 +28,7 @@ def plotter(original):
         
         plt.imshow(original[i], aspect = "equal", cmap = "gray")
         plt.axis('off')
-        plt.title("Sample Number = "+str(i),fontsize= '60')
+        plt.title("Sample Number = "+str(i+1),fontsize= '60')
         plt.tight_layout()
         plt.savefig("Initial Data", bbox_inches='tight')
 
