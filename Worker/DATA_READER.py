@@ -40,7 +40,7 @@ def reader(FILE_PATH): # Input is given as the Path of the Folder Where all Data
         X[j] = b[j].to_numpy().reshape(1,-1)
     
     #Deletion to free up space
-    del a
+    #del a
     
     # returns the RESHAPED Data to be fed to the Clustering Algorithm & the Original Data for reference 
-    return X, b
+    return X, b, a
