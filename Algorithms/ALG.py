@@ -302,7 +302,7 @@ def HIERARCHY(input_data, clusters, STATUS):
     single_clustering = linkage(input_data, method="single", metric="euclidean")
 
     if STATUS == 1:
-        figure(figsize=(20, 12), dpi=100)
+        figure(figsize=(20, 12), dpi=1000)
         plt.tight_layout()
         plt.subplot(2,2,1)
         dendrogram(linkage_data)
