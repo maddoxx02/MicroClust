@@ -38,7 +38,7 @@ def K_MEANS(input_data, cluster):   # The Function requires input Data in the fo
     # Note: the Data should be read from Datareader or should be converted to the format of (Number of elements, Dimension in 1D) as an array. e.g. If there are 20 files of data with dimensions of 256*256, the Input should be given in theform of 20 files with 1Dimension of 65,536
 
     # K_Means algorithm
-    Kmean = KMeans(n_clusters = cluster, random_state=0)#, n_init = 100)
+    Kmean = KMeans(n_clusters = cluster, random_state=0, init = 'random')#, n_init = 100)
     
     # Fitting It to the Data
     Kmean.fit(input_data)
@@ -171,7 +171,7 @@ def DBSCAN_AUTO(input_data, neigh, min_samp):
 
     kn = KneeLocator(x, distances, curve='convex', direction='increasing')
     
-    clustering = DBSCAN(eps = distances[kn.knee], min_samples = min_samp).fit(input_data)#random_state=0 # MIN_SAMPLES
+    clustering = DBSCAN(eps = distances[kn.knee], min_samples = min_samp, algorithm='brute').fit(input_data)#random_state=0 # MIN_SAMPLES
 
     # A Dictionary to Store the Cluster IDs & the Respective Data with IDs
     kk = {}
@@ -238,7 +238,7 @@ from sklearn.datasets import load_digits
 
 def HDBSCAN_MANUAL(input_data, min_c_s, min_samp, eps):
 
-    clustering_HDB = HDBSCAN(min_cluster_size=min_c_s, min_samples = min_samp, cluster_selection_epsilon = eps)#5,3,475
+    clustering_HDB = HDBSCAN(min_cluster_size=min_c_s, min_samples = min_samp, cluster_selection_epsilon = eps, algorithm = 'brute', cluster_selection_method = 'eom')#5,3,475
     clustering_HDB.fit(input_data)
 
 
@@ -350,7 +350,7 @@ from fcmeans import FCM
 def FUZZY_C(input_data, cluster):
 
 
-    fcm = FCM(n_clusters=cluster, random_state=0)
+    fcm = FCM(n_clusters=cluster, random_state=0, max_iter = 300, )
 
     fcm.fit(input_data)
 
@@ -410,7 +410,7 @@ def MEAN_SHIFT(input_data, bw):
 from sklearn.cluster import AffinityPropagation
 def AFFINITY(input_data, damper):
     
-    clustering_AFP = AffinityPropagation(damping = damper, random_state=0)#random_state=5
+    clustering_AFP = AffinityPropagation(damping = damper, random_state=0, max_iter=300, convergence_iter=54)#random_state=5
     
     clustering_AFP.fit(input_data)
     
@@ -436,9 +436,9 @@ def AFFINITY(input_data, damper):
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 from sklearn.cluster import Birch
-def BIRCH(input_data, clusters):#, threshold, clusters):
+def BIRCH(input_data, thres, clusters, bf):#, threshold, clusters):
 
-    clustering = Birch(threshold = 0.5, n_clusters=clusters)
+    clustering = Birch(threshold = thres, n_clusters=clusters, branching_factor=bf)
 
     clustering.fit(input_data)
     
@@ -468,7 +468,7 @@ from sklearn.cluster import OPTICS
 
 def OPTICS_AUTO(input_data, min_samp): #max_eps = 475
     
-    clustering = OPTICS(min_samples = min_samp, max_eps = 475)
+    clustering = OPTICS(min_samples = min_samp,metric='euclidean', algorithm='brute')
 
     clustering.fit(input_data)
 
