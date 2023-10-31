@@ -350,7 +350,7 @@ from fcmeans import FCM
 def FUZZY_C(input_data, cluster):
 
 
-    fcm = FCM(n_clusters=cluster, random_state=0, max_iter = 300, )
+    fcm = FCM(n_clusters=cluster, random_state=0, max_iter = 300)
 
     fcm.fit(input_data)
 
