@@ -1,17 +1,9 @@
-# NOTE
-
-# SS = DBSCAN(eps=478, min_samples=3).fit(SF1) #EPS<=400 was noise & >=700 
-
-# Woriking range: 460-480
-
-
-
 from sklearn.cluster import DBSCAN
 import numpy as np
 
-def DBSCAN_MANUAL_Cluster(input_data, eps):
+def DBSCAN_MANUAL(input_data, eps, min_samp):
     
-    clustering = DBSCAN(eps=eps, min_samples=3)# min samples = minimum samples to be considered as a Centroid
+    clustering = DBSCAN(eps=eps, min_samples=min_samp)# min samples = minimum samples to be considered as a Centroid
     
     clustering.fit(input_data)
     
@@ -20,7 +12,7 @@ def DBSCAN_MANUAL_Cluster(input_data, eps):
     temp = []
 
     # Creating the Key for the number of Clusters as mentioned
-    for k in range(max(clustering.labels_)):
+    for k in range(len(np.unique(clustering.labels_))):
         kk[k] = []
 
     # Stores the Cluster ID's for Reference & Assignment 
@@ -32,5 +24,5 @@ def DBSCAN_MANUAL_Cluster(input_data, eps):
             if clustering.labels_[i] == tt[t]:
                 kk[t]+=[i]
 
-    # Returning a Dictionary with The Number of Clusters and respective Elements within
+    # Returning a Dictionary with The Number of Clusters and respective Elem
     return kk, clustering.labels_

@@ -1,12 +1,11 @@
-# This function performs Clustering on the Data; 
+#K means ++
 
 from sklearn.cluster import KMeans
 
 # have to make A bigger selection menu for types of data Input: 
 # 1. 
 
-def K_MEANS_PLUS(input_data, cluster):   # The Function requires input Data in the format of (Data, Number of Clusters) 
-    # Note: the Data should be read from Datareader or should be converted to the format of (Number of elements, Dimension in 1D) as an array. e.g. If there are 20 files of data with dimensions of 256*256, the Input should be given in theform of 20 files with 1Dimension of 65,536
+def K_MEANS_PLUS(input_data, cluster):   
 
     # K_Means algorithm
     Kmean = KMeans(n_clusters = cluster, init = 'k-means++', random_state=0)#, n_init = 100)
@@ -33,5 +32,3 @@ def K_MEANS_PLUS(input_data, cluster):   # The Function requires input Data in t
 
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, Kmean.labels_
-
-    

@@ -1,7 +1,7 @@
 from sklearn.cluster import Birch
-def BIRCH_clust(input_data, clusters):#, threshold, clusters):
+def BIRCH(input_data, thres, clusters, bf):#, threshold, clusters):
 
-    clustering = Birch(threshold = 0.5, n_clusters=clusters)
+    clustering = Birch(threshold = thres, n_clusters=clusters, branching_factor=bf)
 
     clustering.fit(input_data)
     
@@ -24,4 +24,3 @@ def BIRCH_clust(input_data, clusters):#, threshold, clusters):
 
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, clustering.labels_
-

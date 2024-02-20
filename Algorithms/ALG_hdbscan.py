@@ -2,9 +2,9 @@ from sklearn.cluster import HDBSCAN
 from sklearn.datasets import load_digits
 
 
-def HDBSCAN_MANUAL_Cluster(input_data, min_c_s, min_samp, eps):
+def HDBSCAN_MANUAL(input_data, min_c_s, min_samp, eps):
 
-    clustering_HDB = HDBSCAN(min_cluster_size=min_c_s, min_samples = min_samp, cluster_selection_epsilon = eps)#5,3,475
+    clustering_HDB = HDBSCAN(min_cluster_size=min_c_s, min_samples = min_samp, cluster_selection_epsilon = eps, algorithm = 'brute', cluster_selection_method = 'eom')#5,3,475
     clustering_HDB.fit(input_data)
 
 
@@ -13,7 +13,7 @@ def HDBSCAN_MANUAL_Cluster(input_data, min_c_s, min_samp, eps):
     temp = []
 
     # Creating the Key for the number of Clusters as mentioned
-    for k in range(max(clustering_HDB.labels_)):
+    for k in range(len(np.unique(clustering_HDB.labels_))):
         kk[k] = []
 
     # Stores the Cluster ID's for Reference & Assignment 

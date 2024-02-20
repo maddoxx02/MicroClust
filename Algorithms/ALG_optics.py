@@ -1,8 +1,8 @@
 from sklearn.cluster import OPTICS
 
-def OPTICS_A(input_data, min_samp): #max_eps = 475
+def OPTICS_AUTO(input_data, min_samp): #max_eps = 475
     
-    clustering = OPTICS(min_samples = min_samp, max_eps = 475)
+    clustering = OPTICS(min_samples = min_samp,metric='euclidean', algorithm='brute')
 
     clustering.fit(input_data)
 

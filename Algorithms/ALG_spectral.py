@@ -2,7 +2,7 @@ from sklearn.cluster import SpectralClustering
 import numpy as np
 
 
-def Spectral_Cluster(input_data, clusters):
+def SPECTRAL(input_data, clusters):
 
     clustering = SpectralClustering(n_clusters=clusters, assign_labels='discretize', random_state=0).fit(input_data)
 

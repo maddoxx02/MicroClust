@@ -31,11 +31,8 @@ np.random.seed(0)
 
 from sklearn.cluster import KMeans
 
-# have to make A bigger selection menu for types of data Input: 
-# 1. 
 
-def K_MEANS(input_data, cluster):   # The Function requires input Data in the format of (Data, Number of Clusters) 
-    # Note: the Data should be read from Datareader or should be converted to the format of (Number of elements, Dimension in 1D) as an array. e.g. If there are 20 files of data with dimensions of 256*256, the Input should be given in theform of 20 files with 1Dimension of 65,536
+def K_MEANS(input_data, cluster):  
 
     # K_Means algorithm
     Kmean = KMeans(n_clusters = cluster, random_state=0, init = 'random')#, n_init = 100)
@@ -66,15 +63,14 @@ def K_MEANS(input_data, cluster):   # The Function requires input Data in the fo
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 
-# This function performs Clustering on the Data; 
+#K means ++
 
 from sklearn.cluster import KMeans
 
 # have to make A bigger selection menu for types of data Input: 
 # 1. 
 
-def K_MEANS_PLUS(input_data, cluster):   # The Function requires input Data in the format of (Data, Number of Clusters) 
-    # Note: the Data should be read from Datareader or should be converted to the format of (Number of elements, Dimension in 1D) as an array. e.g. If there are 20 files of data with dimensions of 256*256, the Input should be given in theform of 20 files with 1Dimension of 65,536
+def K_MEANS_PLUS(input_data, cluster):   
 
     # K_Means algorithm
     Kmean = KMeans(n_clusters = cluster, init = 'k-means++', random_state=0)#, n_init = 100)
@@ -102,15 +98,12 @@ def K_MEANS_PLUS(input_data, cluster):   # The Function requires input Data in t
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, Kmean.labels_
 #------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-# This function performs Clustering on the Data; 
+# Bisect K means
 
 from sklearn.cluster import BisectingKMeans
 
 def K_MEANS_BISECT(input_data, cluster):   # The Function requires input Data in the format of (Data, Number of Clusters) 
-    # Note: the Data should be read from Datareader or should be converted to the format of (Number of elements, Dimension in 1D) as an array. e.g. If there are 20 files of data with dimensions of 256*256, the Input should be given in theform of 20 files with 1Dimension of 65,536
+    
 
     # K_Means algorithm
     Kmean_BISECT = BisectingKMeans(n_clusters = cluster,init = 'k-means++', random_state=0)#, n_init = 100)
@@ -139,13 +132,7 @@ def K_MEANS_BISECT(input_data, cluster):   # The Function requires input Data in
     return kk, Kmean_BISECT.labels_
 #------------------------------------------------------------------------------------------------------------------------------------------
 
-
-# https://www.kdnuggets.com/2022/08/implementing-dbscan-python.html 
-# https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc
-# https://stats.stackexchange.com/questions/88872/a-routine-to-choose-eps-and-minpts-for-dbscan 
-
 # Determining optimal EPS value: https://iopscience.iop.org/article/10.1088/1755-1315/31/1/012012/pdf
-
 # Distance can be dependent on Elements or chemicals used for the polymer
 
 # Minimal domain knowledge
@@ -195,14 +182,7 @@ def DBSCAN_AUTO(input_data, neigh, min_samp):
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 
-# NOTE
-
-# SS = DBSCAN(eps=478, min_samples=3).fit(SF1) #EPS<=400 was noise & >=700 
-
-# Woriking range: 460-480
-
-
-
+# DBSCAN Manual knee locater
 from sklearn.cluster import DBSCAN
 import numpy as np
 
@@ -262,9 +242,6 @@ def HDBSCAN_MANUAL(input_data, min_c_s, min_samp, eps):
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, clustering_HDB.labels_
 #------------------------------------------------------------------------------------------------------------------------------------------
-#https://www.datacamp.com/tutorial/introduction-hierarchical-clustering-python 
-#  https://www.w3schools.com/python/python_ml_hierarchial_clustering.asp 
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
@@ -301,8 +278,8 @@ def HIERARCHY(input_data, clusters, STATUS):
     average_clustering = linkage(input_data, method="average", metric="euclidean")
     single_clustering = linkage(input_data, method="single", metric="euclidean")
 
-    if STATUS == 1:
-        figure(figsize=(20, 12), dpi=1000)
+    if STATUS == 2:
+        figure(figsize=(20, 12), dpi=200)
         plt.tight_layout()
         plt.subplot(2,2,1)
         dendrogram(linkage_data)
@@ -324,18 +301,26 @@ def HIERARCHY(input_data, clusters, STATUS):
         dendrogram(complete_clustering)
         plt.title("Complete Clustering")
         plt.xlabel("Sample Number in Respective Clusters")
-        plt.ylabel("Distance b/w each Sample (in respective data scale)")
-        #plt.savefig("Complete_Clustering.png")
-
+        plt.ylabel("Distance b/w each Sample (in respective data scale)")     
 
         plt.subplot(2,2,4)
         dendrogram(average_clustering)
         plt.title("Average Clustering")
         plt.xlabel("Sample Number in Respective Clusters")
         plt.ylabel("Distance b/w each Sample (in respective data scale)")
-        #plt.savefig("Average_Clustering.png")
+        plt.savefig("Hierarchical_clustering.png")
        
         plt.show()
+        
+    elif STATUS == 1:
+        figure(figsize=(20, 12), dpi=100)
+        dendrogram(linkage_data)
+        plt.title("Automated Clustering",fontsize = 10)
+        plt.xlabel("Sample Number in Respective Clusters")
+        plt.ylabel("Distance b/w each Sample (in respective data scale)")
+        plt.savefig("Automated_Clustering.png")
+        plt.show()
+    
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, labels
 #------------------------------------------------------------------------------------------------------------------------------------------
@@ -436,7 +421,7 @@ def AFFINITY(input_data, damper):
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 from sklearn.cluster import Birch
-def BIRCH(input_data, thres, clusters, bf):#, threshold, clusters):
+def BIRCH(input_data, clusters,thres, bf):#, threshold, clusters):
 
     clustering = Birch(threshold = thres, n_clusters=clusters, branching_factor=bf)
 

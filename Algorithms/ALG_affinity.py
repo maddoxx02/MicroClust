@@ -1,7 +1,7 @@
 from sklearn.cluster import AffinityPropagation
-def AF_Propagate(input_data):
+def AFFINITY(input_data, damper):
     
-    clustering_AFP = AffinityPropagation(random_state=0)#random_state=5
+    clustering_AFP = AffinityPropagation(damping = damper, random_state=0, max_iter=300, convergence_iter=54)#random_state=5
     
     clustering_AFP.fit(input_data)
     
@@ -10,7 +10,7 @@ def AF_Propagate(input_data):
     temp = []
 
     # Creating the Key for the number of Clusters as mentioned
-    for k in range(max(clustering_AFP.labels_)):
+    for k in range(len(np.unique(clustering_AFP.labels_))):
         kk[k] = []
 
     # Stores the Cluster ID's for Reference & Assignment 

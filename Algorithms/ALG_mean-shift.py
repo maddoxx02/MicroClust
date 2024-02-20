@@ -1,18 +1,18 @@
 from sklearn.cluster import MeanShift
 
 
-def Mean_Shift(input_data):
+def MEAN_SHIFT(input_data, bw):
 
-    clustering = MeanShift(bandwidth = 2)
+    clustering = MeanShift(bandwidth = bw) #486
 
-    clustering.fit(SF1)
+    clustering.fit(input_data)
 
     # A Dictionary to Store the Cluster IDs & the Respective Data with IDs
     kk = {}
     temp = []
 
     # Creating the Key for the number of Clusters as mentioned
-    for k in range(max(clustering.labels_)):
+    for k in range(len(np.unique(clustering.labels_))):
         kk[k] = []
 
     # Stores the Cluster ID's for Reference & Assignment 
@@ -26,4 +26,3 @@ def Mean_Shift(input_data):
 
     # Returning a Dictionary with The Number of Clusters and respective Elements within
     return kk, clustering.labels_
-
