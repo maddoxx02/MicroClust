@@ -42,11 +42,13 @@ Self-Evaluation:
  3. Davies Bouldin Index
 
 
-The **V1.0** version is a first level iteration of the toolbox. Here, the use
- 
+The **V1.0** version is a first level iteration of the toolbox. here, the input provided from the user is the ```path``` to the directory of images to be classifed. The output produced is a visualization of the clusters genearted and the generated scores of each metric. 
+
+
+
  # Simulation Results
 
-simulations are in the folder
+The experiments & results from the work [LINK TO PAPER](LINK TO PAPER) is available in the simulations folder as Python Notebooks. The Algorithms have already been tuned to the performance as in the article. The dataset used is available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10649355.svg)](https://doi.org/10.5281/zenodo.10649355)
 
 
 # How to use the toolbox.?
