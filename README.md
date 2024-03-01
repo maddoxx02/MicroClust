@@ -65,6 +65,19 @@ The following image visualizes the transformation performed within the toolkit t
 ![Overview](Add-ons/Transformation.png)
 
 
+The **Simulation** directory consists of three cases of experiments where specific features of the AFM data were being sought. 
+ - Case 1 - Classification of the AFM data as per ***scan size***
+ - Case 2 - Classification of the AFM data as per ***polymer type***
+ - Case 3 - Classificaiton of the AFM data as per ***thickness of films***
+
+Under each case, the simulations are further divided into specific sub-cases (A,B,C,D) based on the pool of data used for classification. The contents of the folders include: 
+ - The visualizations of the initial scans & their classified results
+ - Benchmarked scores of all metrics
+ - Graphical visualization of Hierarchial relation
+
+
+Futher, usage & features of the toolkits are explained in the sections below. 
+
 
 # How to use the toolbox.?
 
