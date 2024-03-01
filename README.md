@@ -51,7 +51,9 @@ simulations are in the folder
 
 # How to use the toolbox.?
 
-``` clone git repo ```
+```
+git clone https://github.com/maddoxx02/MicroClust
+```
 
 
 
