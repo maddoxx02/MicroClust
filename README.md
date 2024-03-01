@@ -9,6 +9,8 @@
 
 Images from Atomic force microsope (AFM), scanning electorn microsope (SEM) etc, can be classifed using 12 of the most widely used clustering algorithims and further validated using Ground truth and self-evaluatory metrics. The toolbox can perform a 1D and 2D Fourier transform on the image data prior to classification. 
 
+![MicroClust](Toolkits/MicroClust_Compressed.png)
+
 
 #### Algorithims available are: 
  1. K Means 
@@ -38,32 +40,28 @@ Self-Evaluation:
  1. Silhouette Score
  2. Calinski Harabasz Index
  3. Davies Bouldin Index
+
+
+The **V1.0** version is a first level iteration of the toolbox. Here, the use
  
- 
+ # Simulation Results
 
- The tooblbox features 12 algorithims and 10 metrics that can be used to evaluate the performance and accuracy of the generated results. 
+simulations are in the folder
 
 
- The **V1.0** version is a first level iteration of the toolbox. Here, the use
- 
+# How to use the toolbox.?
 
-A Tool that aims to serve chemsists & give them insight on their AFM scans for further analysis. In-Progress...
-
+``` clone git repo ```
 
 
 
-
-
-![MicroClust](Toolkits/MicroClust_Compressed.png)
-
-
-
-If you use this toolbox, please cite using: 
+# Citing the toolbox:
+If you use this toolbox, pLease cite using: 
 
 
 
-
-
-
-#### Requirements 
+## Requirements 
+This toolbox requires the following libraries to run: 
+ 1. Sklearn
+ 2. [Fuzzy C Means](https://github.com/omadson/fuzzy-c-means)
 
