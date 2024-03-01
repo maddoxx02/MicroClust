@@ -12,7 +12,7 @@
 
 Images from Atomic force microsope (AFM), scanning electorn microsope (SEM) etc, can be classifed using 12 of the most widely used clustering algorithims and further validated using Ground truth and self-evaluatory metrics. The toolbox can perform a 1D and 2D Fourier transform on the image data prior to classification. 
 
-![MicroClust](Add-ons/MicroClust_Compressed.png)
+![MicroClust](Add-ons/Repo_Images/MicroClust_Compressed.png)
 
 
 #### Algorithims available are: 
@@ -53,16 +53,16 @@ This toolbox is a part of the work ***"Benchmarking Unsupervised Clustering Algo
 
  # Simulation Results
 
-The experiments & results from the work [LINK TO PAPER](LINK TO PAPER) is available in the simulations folder as Python Notebooks. The Algorithms have already been tuned to the performance as in the article. The dataset used for sinmulations is available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10649355.svg)](https://doi.org/10.5281/zenodo.10649355)
+The experiments & results from the work [LINK TO PAPER](LINK TO PAPER) is available in the simulations folder as Python Notebooks. The **Algorithms have already been tuned** to the respective data and perform as in the article. The dataset used for sinmulations is available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10649355.svg)](https://doi.org/10.5281/zenodo.10649355)
 
 An Overview of the simulations performed is shown in the figure below:
 
-![Overview](Add-ons/Outline.jpg)
+![Overview](Add-ons/Repo_Images/Outline.jpg)
 
 
 The following image visualizes the transformation performed within the toolkit to feed data to the algorithms
 
-![Overview](Add-ons/Transformation.png)
+![Overview](Add-ons/Repo_Images/Transformation.png)
 
 
 The **Simulation** directory consists of three cases of experiments where specific features of the AFM data were being sought. 
@@ -83,10 +83,39 @@ Futher, usage & features of the toolkits are explained in the sections below.
 
 Instructions to ***1.0V*** of the toolkit:
 
-- Installation: 
+- Installation:
 ```
 git clone https://github.com/maddoxx02/MicroClust
 ```
+``` git clone https://github.com/maddoxx02/MicroClust <YOUR CUSTOM DIRECTORY>```
+(Future, versions will have ```pip install```)
+*For dependencies scroll to the end of the readme.*
+
+- Import & usage
+```
+import sys
+sys.path.insert(1,'Y:\MicroClust')
+```
+```sys.path.insert(1, <DIRECTORY OF MICROCLUST INSTALLATION>)```
+
+There are four main modules within:
+
+
+
+
+
+
+### Additional tools
+
+Within MicroClust, there are two scripts to perform conversion operations from Gwyddion format data (.txt) to MicroClust compatible format (.csv). These scripts can be used on the dataset mentioned earlier. 
+
+ - ***TXT2CSV.py*** : Script to convert Gwyddion format of data (.txt) to (.csV) (i.e. the dimension of the file remains unchanged)
+   The script takes the ```path``` of the directory containing the (.txt) files as input and creates a folder named ```CSV``` within which all (.csv) files are stored. 
+ 
+ - ***CSV2IMG.py*** : Script to export (.csv) format of data to (.png) images (of the surface)
+   The script takes the ```path``` of the directory containing the (.csv) files as input and creates a folder named ```IMG``` within which all (.png) images are stored. 
+
+
 ```
 import 
 ```
