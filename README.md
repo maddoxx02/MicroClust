@@ -83,7 +83,7 @@ Futher, usage & features of the toolkits are explained in the sections below.
 
 Instructions to ***1.0V*** of the toolkit:
 
-- Installation:
+- *Installation:*
 ```
 git clone https://github.com/maddoxx02/MicroClust
 ```
@@ -91,7 +91,7 @@ git clone https://github.com/maddoxx02/MicroClust
 (Future, versions will have ```pip install```)
 *For dependencies scroll to the end of the readme.*
 
-- Import & usage
+- *Import & usage:*
 ```
 import sys
 sys.path.insert(1,'Y:\MicroClust')
@@ -100,14 +100,78 @@ sys.path.insert(1,'Y:\MicroClust')
 
 
 - *Loading Data*
+To load data into your workspace, use:
+```
+import Worker.DATA_READER as DR
+```
+```
+data, original, adrs = DR.reader(<DIRECTORY OF AFM DATA>)
+```
+where, 
+```data``` stores the data in the vecotrized format as shown in the previous section. The raw data is used computation and metric calculation. 
+```original``` is used to create visualizations of the data fed (before and after classification).
+```adrs``` is a dictionary to store the individual ```path``` of each file being used (as a reference).
+
+- *Peforming 1D and 2D Fourier Transforms*
+```
+One_Data = DM.Process_1D_F(original)
+Two_Data = DM.Process_2D_F(original) 
+```
+
+- *Plotting Initial set of data*
+```
+import Worker.INITIAL_PLOTTER as IPLOT         
+import Worker.FINAL_PLOTTER as FPLOT           
+```
+where, 
+```IPLOT.plotter(original)``` is used to create a single visualization of all images provided before classification
+```FPLOT.plotter(list(clustered labels), original)``` creates images of each cluster with elements within
 
 
 - Performing Operations
-There are three main modules:
-
  1. ***Algorithms***
+
+Each algorithm in the toolkit can be called individually, to improve readability & ease of access the algorithms are split into two groups:
+
+ a. ***Implicitly Tuned*** (internally tuned algorithms) - These algorithms require the final number of clusters to be provided as input
+```
+ALG.K_MEANS(data, <NO_CLUSTERS>)
+ALG.K_MEANS(data, <NO_CLUSTERS>) 
+ALG.K_MEANS_PLUS(data, <NO_CLUSTERS>)
+ALG.K_MEANS_BISECT(data, <NO_CLUSTERS>)
+ALG.FUZZY_C(data, <NO_CLUSTERS>)
+ALG.SPECTRAL(data, <NO_CLUSTERS>)
+ALG.HIERARCHY(data, ALG.HIERARCHY(data, <NO_CLUSTERS>, <GRAPH>)  
+```
+Where, 
+- ```K Means, K Means ++ & K Means Bisect``` is set to have maximum iterations of ***300*** with ***10*** initializations, while K Means bisect follows the ***Greedy approach*** for cluster centre initialization and a bisecting strategy of ***Biggest Inertia***
+
+- ```Fuzzy C Means``` has a degree of Fuzziness ***2*** and maximum iterations of ***300***
+  
+- ```Spectral aglorithm``` utilizes ***arpack*** decomposition strategy with ***10*** initializations and ***Radial basis function*** to calculate affinity
+  
+- In hierarchy algorithm uses an ***Euclidean affinity metric*** and a ***ward*** linkage criteria , ```<GRAPH>``` can be either ```1``` or ```0```, to produce a dendogram graph of the clustered results or not. 
+
+
+
+ b. ***Explicitly Tuned*** (manually tuned algorithms) - These algorithms require additional hyperparameters to be tuned by the use before usage
+```
+T0_A7 = ALG.DBSCAN_AUTO(data, 2, 4)
+T0_A8 = ALG.DBSCAN_MANUAL(data, 0.0001, 4)      
+T0_A9 = ALG.HDBSCAN_MANUAL(data, 2, 2, 0)
+T0_A10 = ALG.MEAN_SHIFT(data, 0.00012)
+T0_A11 = ALG.OPTICS_AUTO(data, 4)     
+T0_A12 = ALG.AFFINITY(data,0.999)
+T0_A13 = ALG.BIRCH(TWO_Data, 3, 0.00001, 50)
+
+
+
+```
+
+ 
+ 
  2. ***Metrics***
- 3. ***Worker***
+
   
 To import algorithims, intialize: 
 ```
@@ -139,6 +203,11 @@ If you use this toolbox, pLease cite using:
 
 ## Requirements 
 This toolbox requires the following libraries to run: 
- 1. Sklearn
- 2. [Fuzzy C Means](https://github.com/omadson/fuzzy-c-means)
+ 1. Sklearn (1.3.0)
+ 2. [Fuzzy C Means](https://github.com/omadson/fuzzy-c-means)(1.7.0)
+ 3. Numpy (1.22.4)
+ 4. Seaborn (0.11.2)
+ 5. skimage (0.19.2)
+ 6. matplotlib (3.5.2)
+ 7. kneed (0.8.2)
 
