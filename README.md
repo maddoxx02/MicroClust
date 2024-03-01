@@ -53,7 +53,17 @@ This toolbox is a part of the work ***"Benchmarking Unsupervised Clustering Algo
 
  # Simulation Results
 
-The experiments & results from the work [LINK TO PAPER](LINK TO PAPER) is available in the simulations folder as Python Notebooks. The Algorithms have already been tuned to the performance as in the article. The dataset used is available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10649355.svg)](https://doi.org/10.5281/zenodo.10649355)
+The experiments & results from the work [LINK TO PAPER](LINK TO PAPER) is available in the simulations folder as Python Notebooks. The Algorithms have already been tuned to the performance as in the article. The dataset used for sinmulations is available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10649355.svg)](https://doi.org/10.5281/zenodo.10649355)
+
+An Overview of the simulations performed is shown in the figure below:
+
+![Overview](Add-ons/Outline.jpg)
+
+
+The following image visualizes the transformation performed within the toolkit to feed data to the algorithms
+
+![Overview](Add-ons/Transformation.png)
+
 
 
 # How to use the toolbox.?
