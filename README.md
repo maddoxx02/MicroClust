@@ -48,7 +48,7 @@ Self-Evaluation:
 The **V1.0** version is a first level iteration of the toolbox. here, the input provided from the user is the ```path``` to the directory of images to be classifed. The output produced is a visualization of the clusters genearted and the generated scores of each metric. 
 Algorithims 1 to 6 are implicitly tuned (i.e. internally tuned) and only require the expected number of clusters to be provided, where as algorithms 7 - 12 are explicitly tuned (i.e. tuned by users requirements) and require more information to be provided such as the minimum number of neighours to be considered a centroid point etc. 
 
-add image of Metrics and their properties 
+This toolbox is a part of the work ***"Benchmarking Unsupervised Clustering Algorithms for Atomic Force Microscopy  Data on Polyhydroxyalkanoate Films"***
 
 
  # Simulation Results
