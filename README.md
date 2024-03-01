@@ -33,6 +33,7 @@ Ground Truth evaluation:
  5. Completeness
  6. V Measure
  7. Fowlkes Mallows Score
+    
 Self-Evaluation:
  8. Silhouette Score
  9. Calinski Harabasz Index
