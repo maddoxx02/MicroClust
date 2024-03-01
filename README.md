@@ -1,7 +1,9 @@
 # MicroClust
 
 
-! BADGES
+![GitHub last commit](https://img.shields.io/github/last-commit/maddoxx02/MicroClust)
+![GitHub Release](https://img.shields.io/github/v/release/maddoxx02/MicroClust)
+
 
 
 
