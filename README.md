@@ -35,9 +35,9 @@ Ground Truth evaluation:
  7. Fowlkes Mallows Score
     
 Self-Evaluation:
- 8. Silhouette Score
- 9. Calinski Harabasz Index
- 10. Davies Bouldin Index
+ 1. Silhouette Score
+ 2. Calinski Harabasz Index
+ 3. Davies Bouldin Index
  
  
 
