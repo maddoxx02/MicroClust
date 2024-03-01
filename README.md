@@ -81,6 +81,9 @@ Futher, usage & features of the toolkits are explained in the sections below.
 
 # How to use the toolbox.?
 
+Instructions to ***1.0V*** of the toolkit:
+
+- Installation: 
 ```
 git clone https://github.com/maddoxx02/MicroClust
 ```
