@@ -131,17 +131,22 @@ where,
 - Performing Operations
  1. ***Algorithms***
 
+To import algorithims, intialize: 
+```
+import Algorithms.ALG as ALG 
+```
+
 Each algorithm in the toolkit can be called individually, to improve readability & ease of access the algorithms are split into two groups:
 
  a. ***Implicitly Tuned*** (internally tuned algorithms) - These algorithms require the final number of clusters to be provided as input
 ```
-ALG.K_MEANS(data, <NO_CLUSTERS>)
-ALG.K_MEANS(data, <NO_CLUSTERS>) 
-ALG.K_MEANS_PLUS(data, <NO_CLUSTERS>)
-ALG.K_MEANS_BISECT(data, <NO_CLUSTERS>)
-ALG.FUZZY_C(data, <NO_CLUSTERS>)
-ALG.SPECTRAL(data, <NO_CLUSTERS>)
-ALG.HIERARCHY(data, ALG.HIERARCHY(data, <NO_CLUSTERS>, <GRAPH>)  
+ALG.K_MEANS(data, <NUM_CLUSTERS>)
+ALG.K_MEANS(data, <NUM_CLUSTERS>) 
+ALG.K_MEANS_PLUS(data, <NUM_CLUSTERS>)
+ALG.K_MEANS_BISECT(data, <NUM_CLUSTERS>)
+ALG.FUZZY_C(data, <NUM_CLUSTERS>)
+ALG.SPECTRAL(data, <NUM_CLUSTERS>)
+ALG.HIERARCHY(data, ALG.HIERARCHY(data, <NUM_CLUSTERS>, <GRAPH>)  
 ```
 Where, 
 - ```K Means, K Means ++ & K Means Bisect``` is set to have maximum iterations of ***300*** with ***10*** initializations, while K Means bisect follows the ***Greedy approach*** for cluster centre initialization and a bisecting strategy of ***Biggest Inertia***
@@ -156,31 +161,118 @@ Where,
 
  b. ***Explicitly Tuned*** (manually tuned algorithms) - These algorithms require additional hyperparameters to be tuned by the use before usage
 ```
-T0_A7 = ALG.DBSCAN_AUTO(data, 2, 4)
-T0_A8 = ALG.DBSCAN_MANUAL(data, 0.0001, 4)      
-T0_A9 = ALG.HDBSCAN_MANUAL(data, 2, 2, 0)
-T0_A10 = ALG.MEAN_SHIFT(data, 0.00012)
-T0_A11 = ALG.OPTICS_AUTO(data, 4)     
-T0_A12 = ALG.AFFINITY(data,0.999)
-T0_A13 = ALG.BIRCH(TWO_Data, 3, 0.00001, 50)
-
-
+T0_A7 = ALG.DBSCAN_AUTO(data, <NEAREST NEIGHBOURS THRESHOLD>, <MINIMUM NUM OF SAMPLES>)
+T0_A8 = ALG.DBSCAN_MANUAL(data, <EPSILON>, <MINIMUM NUM OF SAMPLES>)      
+T0_A9 = ALG.HDBSCAN_MANUAL(data, <MINIMUM CLUSTER SIZE>, <MINIMUM NUM OF SAMPLES>, <MAXIMUM CLUSTER SIZE>)
+T0_A10 = ALG.MEAN_SHIFT(data, <BANDWIDTH>)
+T0_A11 = ALG.OPTICS_AUTO(data, <MINIMUM NUM OF SAMPLES>)     
+T0_A12 = ALG.AFFINITY(data,<DAMPING FACTOR>)
+T0_A13 = ALG.BIRCH(TWO_Data, <NUM_CLUSTERS>, <THRESHOLD>, <BRANCHING FACTOR>)
 
 ```
-
- 
- 
- 2. ***Metrics***
-
+Where, 
+- ```DBSCAN (Automated)``` performs calculation of the knee point convergence internally. The aglorithm uses ```Brute Force``` algorithm to calculate the distance of nearest neighbours
+  - ***NEAREST NEIGHBOURS THRESHOLD*** - The minimum distance between neighours possible during clustering in dimension space
+  - ***MINIMUM NUM OF SAMPLES*** - The minimum number of samples in the neighbourhood to be considered a core point (centroid for a cluster)
   
-To import algorithims, intialize: 
-```
-import Algorithms.ALG as ALG 
-```
-You can then use the requried algorithm from the list, with 
+- ```DBSCAN (Manual)``` the knee point is determined using the ```EPSILON``` value provided. The algorithm used to calculate the distance of nearest neighbours is ```Nearest neighbours```
+  - ***EPSILON*** - The Maximum distance between two samples of one to be considered in the neighbour hood of the other
+  - ***MINIMUM NUM OF SAMPLES*** - The minimum number of samples in the neighbourhood to be considered a core point (centroid for a cluster)
+ 
+- ```HDBSCAN``` uses the ```brute force``` rpaoch to compute core distances with a cluster selection method using ```excess mass``` approach
+  - ***MINIMUM CLUSTER SIZE*** - Minimum number of samples in a group to be considered a cluster. Clusters smaller than this is considered as noise
+  - ***MINIMUM NUM OF SAMPLES*** - The minimum number of samples in the neighbourhood to be considered a core point (centroid for a cluster)
+  - ***MAXIMUM CLUSTER SIZE*** - The maximum possible size of a cluster in the dimension space after which another cluster is created
+    
+- ```Mean Shift``` the algorithm is set to perform ***300*** iterations to converge
+  - ***Bandwidth*** - 
+  
+- ```OPTICS``` uses the ***Euclidean*** metric to calculate the distance between samples and a ```brute force``` approach to compute nearest neighbours 
+  - ***MINIMUM NUM OF SAMPLES*** - The minimum number of samples in the neighbourhood to be considered a core point (centroid for a cluster)
+
+- ```Affinity Propagation``` performs ```300``` iterations to converge using a ```Eculidean``` affinity metric and ***54*** a threshold for convergence
+  - ***DAMPING FACTOR*** - 
+
+- ```BIRCH```
+  - ***THRESHOLD*** -
+  - ***BRANCHING FACTOR*** - 
 
 
-### Additional tools
+
+The algorithms return two arrays: 
+1. A Dictionry of the predicted labels
+2. The predicted Label set (as a numpy array)
+  
+
+- ***Performing Operations on the data***
+  Include
+  ```
+  import Worker.MODS as DM
+  ``` 
+1. 1D Fourier Transform
+```
+One_D = DM.Process_1D_F(original) 
+```
+
+2. 2D Fourier Transform
+```
+Two_D = DM.Process_2D_F(original)
+```
+
+This data can be fed to the algorithm as follows:
+```
+ALG.SPECTRAL(One_D[1], 3)
+ALG.MEAN_SHIFT(Two_D, 490)
+```
+where,
+```One_D``` has transformed data in the orientation of ```[0] = columns``` and ```[1] = rows```
+
+
+
+
+ 4. ***Metrics***
+To use metrics initalize:
+```
+import Metrics.GroundTruth_Metrics as MC_1     
+import Metrics.SelfEvaluatory_Metrics as MC_2  
+
+```
+
+ To use Ground Truth metrics, the truth label set has to be intialized as a numpy array e.g.
+ ```
+ GD = np.array([0,0,0,1,1,1])
+ ```
+
+ Calling a group of metrics. The input for the ground truth metrics is to be given as:  
+ ```
+ M1 =  MC_1.Metric_1(<GROUND TRUTH>, <RESULT OF ALG[1]>,<NAME OF ALG>)
+ ```
+ Self Evaluatory metrics are called as: 
+ ```
+ M2 =  MC_2.Metric_2(<RESULT OF ALG[1]>,<NAME OF ALG>)
+ ```
+
+e.g. 
+
+```
+GD = np.array([0,0,1,2])
+Test_1 = ALG.K_MEANS(data, 3)
+Result_G = MC_1.Metric_1(GD, Test_1[1], "K means")
+Result_S = MC_2.Metric_2(Test_1[1], "K means")
+
+```
+
+it returns a single dataframe slice which can be exported or saved as requried. 
+
+
+5. ***Visualizing Results***
+```
+FPLOT.plotter_2(Test_1[0], original)
+```
+This produces the visualizastion of each cluster & its elements together. 
+
+
+## Additional tools
 
 Within MicroClust, there are two scripts to perform conversion operations from Gwyddion format data (.txt) to MicroClust compatible format (.csv). These scripts can be used on the dataset mentioned earlier. 
 
@@ -192,7 +284,8 @@ Within MicroClust, there are two scripts to perform conversion operations from G
 
 
 ```
-import 
+TXT2CSV(<PATH TO DIRECTORY>)
+CSV2IMG(<PATH TO DIRECTORY>)
 ```
 
 
