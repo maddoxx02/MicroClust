@@ -98,21 +98,32 @@ sys.path.insert(1,'Y:\MicroClust')
 ```
 ```sys.path.insert(1, <DIRECTORY OF MICROCLUST INSTALLATION>)```
 
-There are four main modules within:
+
+- *Loading Data*
 
 
+- Performing Operations
+There are three main modules:
 
-
+ 1. ***Algorithms***
+ 2. ***Metrics***
+ 3. ***Worker***
+  
+To import algorithims, intialize: 
+```
+import Algorithms.ALG as ALG 
+```
+You can then use the requried algorithm from the list, with 
 
 
 ### Additional tools
 
 Within MicroClust, there are two scripts to perform conversion operations from Gwyddion format data (.txt) to MicroClust compatible format (.csv). These scripts can be used on the dataset mentioned earlier. 
 
- - ***TXT2CSV.py*** : Script to convert Gwyddion format of data (.txt) to (.csV) (i.e. the dimension of the file remains unchanged)
+ - ***TXT2CSV.py*** : Script to convert Gwyddion format of data ***(.txt) to (.csV)*** (i.e. the dimension of the file remains unchanged)
    The script takes the ```path``` of the directory containing the (.txt) files as input and creates a folder named ```CSV``` within which all (.csv) files are stored. 
  
- - ***CSV2IMG.py*** : Script to export (.csv) format of data to (.png) images (of the surface)
+ - ***CSV2IMG.py*** : Script to export ***(.csv)*** format of data to ***(.png)*** images (of the surface)
    The script takes the ```path``` of the directory containing the (.csv) files as input and creates a folder named ```IMG``` within which all (.png) images are stored. 
 
 
